@@ -1,4 +1,7 @@
+import { useUserStore } from '@/stores/userStore';
 import { createRouter, createWebHistory } from 'vue-router'
+import { DashboardRoutes } from './routes/DashboardRoutes';
+import { routeConstants } from './routeConstants';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -6,14 +9,7 @@ const router = createRouter({
     return savedPosition || { left: 0, top: 0 }
   },
   routes: [
-    {
-      path: '/',
-      name: 'Ecommerce',
-      component: () => import('../views/Ecommerce.vue'),
-      meta: {
-        title: 'eCommerce Dashboard',
-      },
-    },
+    ...DashboardRoutes,
     {
       path: '/calendar',
       name: 'Calendar',
@@ -116,7 +112,7 @@ const router = createRouter({
     },
 
     {
-      path: '/error-404',
+      path: routeConstants.NOT_FOUND,
       name: '404 Error',
       component: () => import('../views/Errors/FourZeroFour.vue'),
       meta: {
@@ -125,7 +121,7 @@ const router = createRouter({
     },
 
     {
-      path: '/signin',
+      path: routeConstants.LOGIN,
       name: 'Signin',
       component: () => import('../views/Auth/Signin.vue'),
       meta: {
@@ -133,7 +129,7 @@ const router = createRouter({
       },
     },
     {
-      path: '/signup',
+      path: routeConstants.SIGN_UP,
       name: 'Signup',
       component: () => import('../views/Auth/Signup.vue'),
       meta: {
@@ -143,9 +139,19 @@ const router = createRouter({
   ],
 })
 
+router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  
+  if (to.meta.requiresAuth && !userStore.isAuthenticated) {
+    next(routeConstants.LOGIN);
+  } else {
+    next();
+  }
+});
+
 export default router
 
 router.beforeEach((to, from, next) => {
-  document.title = `Vue.js ${to.meta.title} | TailAdmin - Vue.js Tailwind CSS Dashboard Template`
+  document.title = `QikBill ${to.meta.title} | - Smart billing`
   next()
 })

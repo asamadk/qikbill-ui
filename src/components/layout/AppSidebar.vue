@@ -20,14 +20,22 @@
       ]"
     >
       <router-link to="/">
-        <img
+        <QikBillIcon
+          v-if="isExpanded || isHovered || isMobileOpen"  
+          :showText="true"
+        />
+        <QikBillIcon
+          v-else
+          :showText="false"
+        />
+        <!-- <img
           v-if="isExpanded || isHovered || isMobileOpen"
           class="dark:hidden"
           src="/images/logo/logo.svg"
           alt="Logo"
           width="150"
           height="40"
-        />
+        /> -->
         <img
           v-if="isExpanded || isHovered || isMobileOpen"
           class="hidden dark:block"
@@ -36,13 +44,13 @@
           width="150"
           height="40"
         />
-        <img
+        <!-- <img
           v-else
           src="/images/logo/logo-icon.svg"
           alt="Logo"
           width="32"
           height="32"
-        />
+        /> -->
       </router-link>
     </div>
     <div
@@ -233,6 +241,7 @@ import {
 import SidebarWidget from "./SidebarWidget.vue";
 import BoxCubeIcon from "@/icons/BoxCubeIcon.vue";
 import { useSidebar } from "@/composables/useSidebar";
+import QikBillIcon from "@/icons/QikBillIcon.vue";
 
 const route = useRoute();
 

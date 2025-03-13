@@ -5,6 +5,7 @@ import { routeConstants } from "@/router/routeConstants";
 
 // Create an Axios instance
 const api = axios.create({
+  url: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
   baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
   withCredentials: true, // Ensures cookies (session-based auth) are sent with requests
   headers: {

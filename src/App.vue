@@ -2,6 +2,7 @@
   <ThemeProvider>
     <SidebarProvider>
       <Toast />
+      <Loading/>
       <RouterView />
     </SidebarProvider>
   </ThemeProvider>
@@ -11,4 +12,5 @@
 import ThemeProvider from './components/layout/ThemeProvider.vue'
 import SidebarProvider from './components/layout/SidebarProvider.vue'
 import Toast from './components/ui/Toast.vue';
+import Loading from './components/ui/Loading.vue';
 </script>

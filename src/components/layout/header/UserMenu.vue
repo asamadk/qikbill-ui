@@ -33,7 +33,6 @@
             :to="item.href"
             class="flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
           >
-            <!-- SVG icon would go here -->
             <component
               :is="item.icon"
               class="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300"
@@ -42,8 +41,7 @@
           </router-link>
         </li>
       </ul>
-      <router-link
-        to="/signin"
+      <div
         @click="signOut"
         class="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
       >
@@ -51,7 +49,7 @@
           class="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300"
         />
         Sign out
-      </router-link>
+      </div>
     </div>
     <!-- Dropdown End -->
   </div>
@@ -61,9 +59,19 @@
 import { UserCircleIcon, ChevronDownIcon, LogoutIcon, SettingsIcon, InfoCircleIcon } from '@/icons'
 import { RouterLink } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue'
+import AuthAPI from '@/api/AuthAPI'
+import { useUserStore } from '@/stores/userStore'
+import { useLoadingStore } from '@/stores/loadingStore'
+import { useToastStore } from '@/stores/toastStore'
+import { isAxiosError } from 'axios'
+import { routeConstants } from '@/router/routeConstants'
 
 const dropdownOpen = ref(false)
 const dropdownRef = ref(null)
+
+const userStore = useUserStore();
+const loadingStore = useLoadingStore();
+const toastStore = useToastStore();
 
 const menuItems = [
   { href: '/profile', icon: UserCircleIcon, text: 'Edit profile' },
@@ -79,10 +87,20 @@ const closeDropdown = () => {
   dropdownOpen.value = false
 }
 
-const signOut = () => {
-  // Implement sign out logic here
-  console.log('Signing out...')
-  closeDropdown()
+const signOut = async () => {
+  try{
+    loadingStore.startLoading();
+    await AuthAPI.logout();
+    userStore.logout();
+    closeDropdown();
+    window.location.href = routeConstants.LOGIN;
+  }catch(error){
+    if(isAxiosError(error)){
+      toastStore.showToast('Error', error.response.data.message,'error');
+    }
+  }finally{
+    loadingStore.stopLoading();
+  }
 }
 
 const handleClickOutside = (event) => {

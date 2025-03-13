@@ -5,30 +5,6 @@
         class="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900"
       >
         <div class="flex flex-col flex-1 w-full lg:w-1/2">
-          <div class="w-full max-w-md pt-10 mx-auto">
-            <router-link
-              to="/"
-              class="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-            >
-              <svg
-                class="stroke-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M12.7083 5L7.5 10.2083L12.7083 15.4167"
-                  stroke=""
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              Back to dashboard
-            </router-link>
-          </div>
           <div class="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
             <div>
               <div class="mb-5 sm:mb-8">
@@ -38,26 +14,26 @@
                   Sign In
                 </h1>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                  Enter your email and password to sign in!
+                  Enter your Phone number and password to sign in!
                 </p>
               </div>
               <div>
                 <form @submit.prevent="handleSubmit">
                   <div class="space-y-5">
-                    <!-- Email -->
+                    <!-- Phone -->
                     <div>
                       <label
-                        for="email"
+                        for="Phone"
                         class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                       >
-                        Email<span class="text-error-500">*</span>
+                        Phone<span class="text-error-500">*</span>
                       </label>
                       <input
-                        v-model="email"
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="info@gmail.com"
+                        v-model="phone"
+                        type="number"
+                        id="phone"
+                        name="phone"
+                        placeholder="9119999999"
                         class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                       />
                     </div>
@@ -194,19 +170,18 @@
           </div>
         </div>
         <div
-          class="relative items-center hidden w-full h-full lg:w-1/2 bg-brand-950 dark:bg-white/5 lg:grid"
+          class="relative items-center hidden w-full h-full lg:w-1/2 bg-gray-900 dark:bg-white/5 lg:grid"
         >
           <div class="flex items-center justify-center z-1">
             <common-grid-shape />
             <div class="flex flex-col items-center max-w-xs">
-              <router-link to="/" class="block mb-4">
-                <!-- <img width="{231}" height="{48}" src="/images/logo/auth-logo.svg" alt="Logo" /> -->
-                <h3 class="text-white text-3xl" >
-                  QikBill
-                </h3>
-              </router-link>
-              <p class="text-center text-gray-400 dark:text-white/60">
-                Free and Open-Source Tailwind CSS Admin Dashboard Template
+              <QikBillIcon 
+                :show-text="true" 
+                :dark-mode="true"
+              />
+              <p class="text-center text-white/60" >
+                Signin to QikBill and supercharge your your business.
+                We manage your bills, so you can focus on your business.
               </p>
             </div>
           </div>
@@ -220,21 +195,43 @@
 import { ref } from 'vue'
 import CommonGridShape from '@/components/common/CommonGridShape.vue'
 import FullScreenLayout from '@/components/layout/FullScreenLayout.vue'
-const email = ref('')
+import QikBillIcon from '@/icons/QikBillIcon.vue'
+import AuthAPI from '@/api/AuthAPI'
+import { useUserStore } from '@/stores/userStore'
+import { useLoadingStore } from '@/stores/loadingStore'
+import { isAxiosError } from 'axios'
+import { useToastStore } from '@/stores/toastStore'
+
+const phone = ref('')
 const password = ref('')
 const showPassword = ref(false)
 const keepLoggedIn = ref(false)
+
+const userStore = useUserStore();
+const loadingStore = useLoadingStore();
+const toastStore = useToastStore();
 
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value
 }
 
-const handleSubmit = () => {
-  // Handle form submission
-  console.log('Form submitted', {
-    email: email.value,
-    password: password.value,
-    keepLoggedIn: keepLoggedIn.value,
-  })
+async function handleSubmit() {
+  try{
+    loadingStore.startLoading();
+    const payload = {
+      phone: phone.value,
+      password: password.value,
+      keepLoggedIn: keepLoggedIn.value,
+    }
+    const res = await AuthAPI.login(payload);
+    userStore.setUser(res);
+    window.location.href = '/';
+  }catch(err){
+    if(isAxiosError(err)){
+      toastStore.showToast('Error', err.response.data?.message, 'error', 4000);
+    }
+  }finally{
+    loadingStore.stopLoading();
+  }
 }
 </script>

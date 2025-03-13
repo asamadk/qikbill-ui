@@ -1,10 +1,10 @@
 export const DashboardRoutes = [
     {
         path: '/',
-        name: 'Ecommerce',
-        component: () => import('../../views/Ecommerce.vue'),
+        name: 'Dashboard',
+        component: () => import('../../views/Dashboard.vue'),
         meta: {
-          title: 'eCommerce Dashboard',
+          title: 'Dashboard',
           requiresAuth: true 
         },
       },

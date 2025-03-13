@@ -2,6 +2,8 @@ import { useUserStore } from '@/stores/userStore';
 import { createRouter, createWebHistory } from 'vue-router'
 import { DashboardRoutes } from './routes/DashboardRoutes';
 import { routeConstants } from './routeConstants';
+import { OpenRoutes } from './routes/OpenRoutes';
+import { PartiesRoutes } from './routes/PartiesRoutes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,7 +11,9 @@ const router = createRouter({
     return savedPosition || { left: 0, top: 0 }
   },
   routes: [
+    ...OpenRoutes,
     ...DashboardRoutes,
+    ...PartiesRoutes,
     {
       path: '/calendar',
       name: 'Calendar',
@@ -108,32 +112,6 @@ const router = createRouter({
       component: () => import('../views/Pages/BlankPage.vue'),
       meta: {
         title: 'Blank',
-      },
-    },
-
-    {
-      path: routeConstants.NOT_FOUND,
-      name: '404 Error',
-      component: () => import('../views/Errors/FourZeroFour.vue'),
-      meta: {
-        title: '404 Error',
-      },
-    },
-
-    {
-      path: routeConstants.LOGIN,
-      name: 'Signin',
-      component: () => import('../views/Auth/Signin.vue'),
-      meta: {
-        title: 'Signin',
-      },
-    },
-    {
-      path: routeConstants.SIGN_UP,
-      name: 'Signup',
-      component: () => import('../views/Auth/Signup.vue'),
-      meta: {
-        title: 'Signup',
       },
     },
   ],

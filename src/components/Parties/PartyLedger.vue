@@ -1,0 +1,3 @@
+<template>
+    Party Ledger
+</template>

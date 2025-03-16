@@ -5,13 +5,13 @@
             <PageBreadcrumb pageTitle="Create Party" />
             <div class="grid grid-cols-1 md:grid-cols-4">
                 <BasicInput label="Party Name*" placeholder="Enter party name" />
-                <BasicInput label="Mobile" placeholder="Enter mobile" type="number" />
-                <BasicInput label="Email" placeholder="Enter email" type="email" />
-                <BasicInput label="Opening Balance" placeholder="Enter opening balance" type="number" />
+                <BasicInput class="ml-5" label="Mobile" placeholder="Enter mobile" type="number" />
+                <BasicInput class="ml-5" label="Email" placeholder="Enter email" type="email" />
+                <BasicInput class="ml-5" label="Opening Balance" placeholder="Enter opening balance" type="number" />
             </div>
             <div class="mt-5 grid grid-cols-1 md:grid-cols-4">
                 <BasicInput label="GSTIN" placeholder="ex: 21XXXXX9438X1XX" />
-                <BasicInput label="Pan Number" placeholder="Enter party PAN number" />
+                <BasicInput class="ml-5" label="Pan Number" placeholder="Enter party PAN number" />
             </div>
             <hr class="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
             <div class="mt-5 grid grid-cols-1 md:grid-cols-4">
@@ -21,14 +21,14 @@
             <hr class="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
             <div class="grid grid-cols-1 md:grid-cols-4">
                 <BasicInput label="Street Address" />
-                <SelectInput class="mr-5" label="State" disabledMenu="Select state" />
-                <BasicInput label="PinCode" placeholder="Select PinCode" type="number" />
-                <BasicInput label="City" placeholder="Select City" />
+                <SelectInput class="ml-5" label="State" disabledMenu="Select state" />
+                <BasicInput class="ml-5" label="PinCode" placeholder="Select PinCode" type="number" />
+                <BasicInput class="ml-5" label="City" placeholder="Select City" />
             </div>
             <hr class="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
             <div class="grid grid-cols-1 md:grid-cols-4">
                 <BasicInput label="Credit Period(Days)" placeholder="eg : 30" type="number" />
-                <BasicInput label="Credit Limit" placeholder="eg : 5000" type="number" />
+                <BasicInput class="ml-5" label="Credit Limit" placeholder="eg : 5000" type="number" />
             </div>
             <div class="mt-5 flex justify-end" >
                 <Button @click="goBack" size="sm" variant="outline"> Cancel </Button>

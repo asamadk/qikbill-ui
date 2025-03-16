@@ -1,8 +1,13 @@
 <template>
   <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-    <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90" x-text="pageTitle">
-      {{ pageTitle }}
-    </h2>
+    <div class="flex" >
+      <IconButton v-if="showBackButton" class="mr-2" @click="goTo">
+        <BackIcon/>
+      </IconButton>
+      <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90 mt-2" x-text="pageTitle">
+        {{ pageTitle }}
+      </h2>
+    </div>
     <nav>
       <ol class="flex items-center gap-1.5">
         <li>
@@ -10,7 +15,7 @@
             class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
             to="/"
           >
-            Home
+            {{ path }}
             <svg
               class="stroke-current"
               width="17"
@@ -37,12 +42,35 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { defineProps } from 'vue'
+<script lang="ts">
+import BackIcon from '@/icons/BackIcon.vue';
+import IconButton from '../ui/IconButton.vue';
 
-interface BreadcrumbProps {
-  pageTitle: string
+
+export default {
+
+  components: {
+    IconButton,
+    BackIcon
+  },
+
+  name: 'PageBreadcrumb',
+
+  props: {
+    pageTitle: String,
+    path: {
+      type: String,
+      default: 'Home'
+    },
+    showBackButton: Boolean,
+    backPath: String
+  },
+
+  methods: {
+    goTo() {
+      this.$router.push(this.backPath);
+    }
+  }
+
 }
-
-defineProps<BreadcrumbProps>()
 </script>

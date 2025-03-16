@@ -143,6 +143,20 @@ export default {
             this.isDrawerOpen = true;
             this.$router.push(routeConstants.EDIT_PARTIES(party.id));
         }
+    },
+    watch: {
+        '$route'(to) {
+            if (to.fullPath === routeConstants.PARTIES) {
+                this.isDrawerOpen = false;
+            } else {
+                this.isDrawerOpen = true;
+            }
+        }
+    },
+    created() {
+        if (this.$route.fullPath.includes('/parties/edit')) {
+            this.isDrawerOpen = true;
+        }
     }
 }
 </script>

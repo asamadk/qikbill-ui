@@ -25,7 +25,7 @@
       StatisticsChart,
       PartiesList,
     },
-    name: 'Dashboard',
+    name: 'Parties',
   }
   </script>
   

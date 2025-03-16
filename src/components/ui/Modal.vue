@@ -1,10 +1,12 @@
 <template>
-  <div v-if="isVisible" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+  <div v-if="isVisible" id="default-modal" tabindex="-1" aria-hidden="true"
+    class="fixed inset-0 z-[100000] flex items-center justify-center min-h-screen bg-gray-100 bg-opacity-50">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
       <!-- Modal content -->
       <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
         <!-- Modal header -->
-        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+        <div
+          class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
             {{ header }}
           </h3>
@@ -18,18 +20,18 @@
             <span class="sr-only">Close modal</span>
           </button>
         </div>
-        <div class="p-4">
+        <div class="p-2">
           <slot></slot>
         </div>
         <!-- Modal footer -->
         <div class="flex justify-end p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
           <button @click="secondaryClick" type="button"
-            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-            {{ secondaryButtonText }}
-          </button>
+          class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+          {{ secondaryButtonText }}
+        </button>
           <button @click="primaryClick" type="button"
             class="ml-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            {{ primaryButtonText }}
+          {{ primaryButtonText }}
           </button>
         </div>
       </div>
@@ -40,12 +42,14 @@
 <script lang="ts">
 export default {
   name: 'Modal',
+
   props: {
     isVisible: Boolean,
     header: String,
     primaryButtonText: String,
     secondaryButtonText: String,
   },
+
   methods: {
     closeModal() {
       this.$emit('close');

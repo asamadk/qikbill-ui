@@ -4,6 +4,11 @@ import { DashboardRoutes } from './routes/DashboardRoutes';
 import { routeConstants } from './routeConstants';
 import { OpenRoutes } from './routes/OpenRoutes';
 import { PartiesRoutes } from './routes/PartiesRoutes';
+import { itemRoutes } from './routes/ItemRoutes';
+import { salesRoutes } from './routes/SalesRoutes';
+import { quotationRoutes } from './routes/QuotationRoutes';
+import { paymentInRoutes } from './routes/PaymentInRoute';
+import { salesReturnRoutes } from './routes/SalesReturnRoutes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +19,11 @@ const router = createRouter({
     ...OpenRoutes,
     ...DashboardRoutes,
     ...PartiesRoutes,
+    ...itemRoutes,
+    ...salesRoutes,
+    ...quotationRoutes,
+    ...paymentInRoutes,
+    ...salesReturnRoutes,
     {
       path: '/calendar',
       name: 'Calendar',

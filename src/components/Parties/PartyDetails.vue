@@ -1,12 +1,14 @@
 <template>
-    <AppDrawer @secondary-click="handleDeleteParty" secondary-button-text="Delete" :show-footer="true"
-        primary-button-text="Edit" @primary-click="handleEditClick" header="Party Details"
-        drawerId="party-details-drawer" drawerLabelId="party-details-label">
-        <Tabs @tab-changed="handleTabChange" :selected-tab="selectedTab" :tabs="tabs" />
-        <PartyTransactions v-if="selectedTab === '1'" />
-        <PartyProfile v-else-if="selectedTab === '2'" />
-        <PartyLedger v-else-if="selectedTab === '3'" />
-        <PartyItemReport v-else />
+    <div>
+        <AppDrawer @close="closeDrawer" @secondary-click="handleDeleteParty" secondary-button-text="Delete" :show-footer="true"
+            primary-button-text="Edit" @primary-click="handleEditClick" header="Party Details"
+            drawerId="party-details-drawer" drawerLabelId="party-details-label">
+            <Tabs class="mb-2" @tab-changed="handleTabChange" :selected-tab="selectedTab" :tabs="tabs" />
+            <PartyTransactions v-if="selectedTab === '1'" />
+            <PartyProfile v-else-if="selectedTab === '2'" />
+            <PartyLedger v-else-if="selectedTab === '3'" />
+            <PartyItemReport v-else />
+        </AppDrawer>
         <Modal @secondary-click="closeDeleteModal" @close="closeDeleteModal" primary-button-text="Delete"
             secondary-button-text="Cancel" header="Delete Party ?" :is-visible="showDeleteModal"
             :fullScreenBackdrop="true" @primary-click="deleteParty" >
@@ -15,7 +17,7 @@
                 <p class="text-gray-400" >This action cannot be reversed.</p>
             </div>
         </Modal>
-    </AppDrawer>
+    </div>
 </template>
 <script lang="ts">
 import { routeConstants } from '@/router/routeConstants';
@@ -56,7 +58,7 @@ export default {
 
     methods: {
         closeDrawer() {
-            this.$emit('close')
+            this.$router.push(routeConstants.PARTIES);
         },
 
         closeDeleteModal() {
@@ -65,6 +67,7 @@ export default {
 
         deleteParty(){
             console.log('Part deleted')
+            this.closeDeleteModal();
         },
 
         handleEditClick() {

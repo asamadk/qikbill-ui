@@ -1,0 +1,1 @@
+export const taxChoice = ['With Tax','Without Tax']

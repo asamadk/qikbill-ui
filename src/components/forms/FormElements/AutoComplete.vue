@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full">
+    <div ref="autocomplete" class="relative w-full">
         <!-- Input Field -->
         <input type="text" v-model="query" @input="filterSuggestions" @keydown.down.prevent="moveDown"
             @keydown.up.prevent="moveUp" @keydown.enter.prevent="selectSuggestion(selectedIndex)"
@@ -42,6 +42,12 @@ export default {
             selectedValue: null
         };
     },
+    mounted() {
+        document.addEventListener("click", this.handleClickOutside);
+    },
+    beforeUnmount() {
+        document.removeEventListener("click", this.handleClickOutside);
+    },
     methods: {
         filterSuggestions() {
             this.filteredSuggestions = this.suggestions.filter((suggestion) =>
@@ -64,6 +70,11 @@ export default {
             this.selectedValue = this.filteredSuggestions[index].value; // Store the value
             this.filteredSuggestions = []; // Hide suggestions
             this.$emit("selected", this.selectedValue); // Emit the selected value
+        },
+        handleClickOutside(event) {
+            if (this.$refs.autocomplete && !this.$refs.autocomplete.contains(event.target)) {
+                this.filteredSuggestions = []; // Close dropdown if clicked outside
+            }
         }
     }
 };

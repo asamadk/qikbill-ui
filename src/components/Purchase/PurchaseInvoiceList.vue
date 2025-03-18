@@ -1,5 +1,4 @@
-<template></template>
-<!-- <template>
+<template>
     <div
         class="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
         <div class="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between">
@@ -8,10 +7,7 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <IconButton @click="showSettings = true" >
-                    <SettingsIcon/>
-                </IconButton>
-                <router-link :to="createSalesInvoice" >
+                <router-link :to="createPurchaseInvoice" >
                     <Button size="sm" variant="primary"> Create Purchase Invoice </Button>
                 </router-link>
             </div>
@@ -83,7 +79,6 @@
             />
         </div>
     </div>
-    <SalesInvoiceSettings v-if="showSettings" @close="showSettings = false" />
 </template>
 
 <script lang="ts">
@@ -92,7 +87,6 @@ import Button from '../ui/Button.vue';
 import SettingsIcon from '@/icons/SettingsIcon.vue';
 import IconButton from '../ui/IconButton.vue';
 import SelectInput from '../forms/FormElements/SelectInput.vue';
-import SalesInvoiceSettings from './SalesInvoiceSettings.vue';
 
 
 export default {
@@ -101,11 +95,10 @@ export default {
         Button,
         SettingsIcon,
         IconButton,
-        SalesInvoiceSettings,
         SelectInput,
     },
 
-    name: 'SalesInvoiceList',
+    name: 'PurchaseInvoiceList',
 
     computed: {
         totalInvoices() {
@@ -118,7 +111,7 @@ export default {
             itemsPerPage: 2,
             showSettings: false,
             currentPage: 0,
-            createSalesInvoice: routeConstants.CREATE_SALES_INVOICE('new'),
+            createPurchaseInvoice: routeConstants.CREATE_PURCHASE_INVOICE('new'),
             invoices: [
                 {
                     id: 'XBJL101',
@@ -138,10 +131,11 @@ export default {
             this.currentPage = page;
             // Fetch new data based on the current page
         },
+        
         handleInvoiceOpen(invoice:any) {
-            this.$router.push(routeConstants.SALES_INVOICE_DETAILS(invoice?.id))
+            this.$router.push(routeConstants.PURCHASE_INVOICE_DETAILS(invoice?.id))
         }
     }
 }
 
-</script> -->
+</script>

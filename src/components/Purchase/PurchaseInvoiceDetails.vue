@@ -3,7 +3,7 @@
         <admin-layout>
             <div
                 class="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-                <PageBreadcrumb :backPath="salesInvoiceEndpoint" :showBackButton="true" path="Sales" pageTitle="Sale Invoice #8" />
+                <PageBreadcrumb :backPath="purchaseInvoiceEndpoint" :showBackButton="true" path="Purchase" pageTitle="Purchase Invoice #8" />
                 <div class="flex justify-between" >
                     <div>
                         <Button variant="outline" >Download PDF</Button>
@@ -38,7 +38,7 @@ import AdminLayout from '../layout/AdminLayout.vue';
 import Button from '../ui/Button.vue';
 import IconButton from '../ui/IconButton.vue';
 import DeleteIcon from '@/icons/DeleteIcon.vue';
-import FinalInvoice from './FinalInvoice.vue';
+import FinalInvoice from '../Sales/FinalInvoice.vue';
 import Modal from '../ui/Modal.vue';
 
 export default {
@@ -52,11 +52,11 @@ export default {
         Modal,
     },
 
-    name: 'SalesInvoiceDetails',
+    name: 'PurchaseInvoiceDetails',
 
     data() {
         return {
-            salesInvoiceEndpoint: routeConstants.SALES_INVOICE,
+            purchaseInvoiceEndpoint: routeConstants.PURCHASE_INVOICE,
             showDelete: false,
         }
     },
@@ -69,8 +69,7 @@ export default {
 
         handleEditInvoice() {
             const invoiceId :string = this.$route.params.id as string;
-            this.$router.push(routeConstants.CREATE_SALES_INVOICE(invoiceId));
-            // console.log("🚀 ~ handleEditInvoice ~ invoiceId:", invoiceId)
+            this.$router.push(routeConstants.CREATE_PURCHASE_INVOICE(invoiceId));
         }
     }
 }

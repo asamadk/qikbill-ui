@@ -13,7 +13,7 @@ export const purchaseRoutes = [
     {
         path: routeConstants.CREATE_PURCHASE_INVOICE(null),
         name: 'Create Purchase Invoice',
-        component: () => import('../../components/Sales/CreateSalesInvoice.vue'),
+        component: () => import('../../components/Purchase/CreatePurchaseInvoice.vue'),
         meta: {
             title: 'Create Purchase Invoice',
             requiresAuth: true
@@ -22,7 +22,7 @@ export const purchaseRoutes = [
     {
         path: routeConstants.PURCHASE_INVOICE_DETAILS(null),
         name: 'Purchase Invoice Details',
-        component: () => import('../../components/Sales/SalesInvoiceDetails.vue'),
+        component: () => import('../../components/Purchase/PurchaseInvoiceDetails.vue'),
         meta: {
             title: 'Purchase Invoice Details',
             requiresAuth: true

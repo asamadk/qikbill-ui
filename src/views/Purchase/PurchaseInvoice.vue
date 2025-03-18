@@ -6,7 +6,7 @@
             </div>
 
             <div class="col-span-12">
-                <!-- <PurchaseInvoiceList /> -->
+                <PurchaseInvoiceList />
             </div>
         </div>
     </admin-layout>

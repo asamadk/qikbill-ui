@@ -9,6 +9,7 @@ import { salesRoutes } from './routes/SalesRoutes';
 import { quotationRoutes } from './routes/QuotationRoutes';
 import { paymentInRoutes } from './routes/PaymentInRoute';
 import { salesReturnRoutes } from './routes/SalesReturnRoutes';
+import { purchaseRoutes } from './routes/PurchaseRoutes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,7 @@ const router = createRouter({
     ...quotationRoutes,
     ...paymentInRoutes,
     ...salesReturnRoutes,
+    ...purchaseRoutes,
     {
       path: '/calendar',
       name: 'Calendar',

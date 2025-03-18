@@ -35,6 +35,8 @@ export const routeConstants = {
     CREATE_SALES_RETURN: (id: string | null) => `/sales-return/create`+ (id ? `/${id}` : '/:id'),
     SALES_RETURN_DETAILS: (id: string | null) => `/sales-return/details`+ (id ? `/${id}` : '/:id'),
     PURCHASE_INVOICE: '/purchase-invoice',
+    CREATE_PURCHASE_INVOICE: (invoiceId: string | null) => `/purchase-invoice/create`+ (invoiceId ? `/${invoiceId}` : '/:id'),
+    PURCHASE_INVOICE_DETAILS: (invoiceId: string | null) => `/purchase-invoice/details`+ (invoiceId ? `/${invoiceId}` : '/:id'),
     PURCHASE_RETURN: '/purchase-return',
     PAYMENT_OUT: '/payment-out',
 }

@@ -19,8 +19,23 @@
 
         <div class="grid grid-cols-3 gap-4 h-[calc(100vh-105px)]">
             <!-- Left section -->
-            <div class="col-span-2 border-r-1">04</div>
-            
+            <div class="col-span-2 border-r-1">
+
+                <!-- CRUD Buttons -->
+                <div class="flex p-2">
+                    <Button variant="outline">+ New Item [CTRL + I]</Button>
+                    <Button class="ml-2" variant="outline">Change Price [P]</Button>
+                    <Button class="ml-2" variant="outline">Change QTY [Q]</Button>
+                    <Button class="ml-2" variant="outline"><span class="text-red-400">Delete Item</span> [DEL]</Button>
+                </div>
+
+                <!-- search input -->
+                <div class="m-2 mt-1">
+                    <!-- <SearchBar placeholder="Search by Item Name/Item Code" /> -->
+                    <AutoComplete placeholder="Search by Item Name/Item Code" :suggestions="cities" />
+                </div>
+            </div>
+
             <!-- Right billing section -->
             <div class="flex flex-col h-full">
                 <!-- Discount and additional -->
@@ -75,16 +90,33 @@
 </template>
 
 <script>
+import AutoComplete from '@/components/forms/FormElements/AutoComplete.vue';
 import SelectInput from '@/components/forms/FormElements/SelectInput.vue';
+import SearchBar from '@/components/layout/header/SearchBar.vue';
 import Button from '@/components/ui/Button.vue';
 import EditIcon from '@/icons/EditIcon.vue';
 
 export default {
     components: {
+        SearchBar,
         Button,
-        SelectInput
+        AutoComplete,
     },
     name: "POS",
+
+    data() {
+        return {
+            cities: [
+                { label: "New York", value: "nyc" },
+                { label: "Los Angeles", value: "la" },
+                { label: "Chicago", value: "chi" },
+                { label: "Houston", value: "hou" },
+                { label: "San Francisco", value: "sf" },
+                { label: "Miami", value: "mia" },
+                { label: "Seattle", value: "sea" }
+            ],
+        };
+    },
 
     methods: {
         goBack() {

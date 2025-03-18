@@ -7,8 +7,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <router-link :to="createPaymentIn">
-                    <Button size="sm" variant="primary"> Create Payment In</Button>
+                <router-link :to="createPaymentOut">
+                    <Button size="sm" variant="primary"> Create Payment Out</Button>
                 </router-link>
             </div>
         </div>
@@ -62,7 +62,7 @@
                 @page-changed="handlePageChange" />
         </div>
     </div>
-    <PaymentInDetail v-if="isDrawerOpen" @close="isDrawerOpen = false"/>
+    <PaymentOutDetails v-if="isDrawerOpen" @close="isDrawerOpen = false"/>
 </template>
 
 <script lang="ts">
@@ -70,7 +70,7 @@ import { routeConstants } from '@/router/routeConstants';
 import Button from '../ui/Button.vue';
 import SelectInput from '../forms/FormElements/SelectInput.vue';
 import Pagination from '../ui/Pagination.vue';
-import PaymentInDetail from './PaymentInDetail.vue';
+import PaymentOutDetails from './PaymentOutDetails.vue';
 
 
 export default {
@@ -79,10 +79,10 @@ export default {
         Button,
         SelectInput,
         Pagination,
-        PaymentInDetail
+        PaymentOutDetails
     },
 
-    name: 'PaymentInList',
+    name: 'PaymentOutList',
 
     computed: {
         totalInvoices() {
@@ -95,7 +95,7 @@ export default {
             itemsPerPage: 1,
             currentPage: 0,
             showSettings: false,
-            createPaymentIn: routeConstants.CREATE_PAYMENT_IN('new'),
+            createPaymentOut: routeConstants.CREATE_PAYMENT_OUT('new'),
             invoices: [
                 {
                     id: 'XBJL101',
@@ -115,12 +115,12 @@ export default {
             // Fetch new data based on the current page
         },
         handleInvoiceOpen(invoice: any) {
-            this.$router.push(routeConstants.PAYMENT_IN__DETAILS(invoice?.id))
+            this.$router.push(routeConstants.PAYMENT_OUT__DETAILS(invoice?.id))
         }
     },
     watch: {
         '$route'(to) {
-            if (to.fullPath === routeConstants.PAYMENT_IN) {
+            if (to.fullPath === routeConstants.PAYMENT_OUT) {
                 this.isDrawerOpen = false;
             } else {
                 this.isDrawerOpen = true;
@@ -129,7 +129,7 @@ export default {
     },
 
     created() {
-        if (this.$route.fullPath.includes('/payment-in/details')) {
+        if (this.$route.fullPath.includes('/payment-out/details')) {
             this.isDrawerOpen = true;
         }
     }

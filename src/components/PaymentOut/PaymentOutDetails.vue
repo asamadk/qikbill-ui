@@ -1,7 +1,7 @@
 <template>
     <div>
         <AppDrawer @close="closeDrawer" @secondary-click="showDeleteModal = true" secondary-button-text="Delete"
-            :show-footer="true" primary-button-text="Edit" @primary-click="handleEditClick" header="Payment In #2"
+            :show-footer="true" primary-button-text="Edit" @primary-click="handleEditClick" header="Payment Out #2"
             drawerId="payment-details-drawer" drawerLabelId="payment-details-label">
             <div>
                 <Button variant="outline">Download PDF</Button>
@@ -60,9 +60,6 @@
                                 <th class="py-3 text-left">
                                     <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Invoice Amount settled</p>
                                 </th>
-                                <th class="py-3 text-left">
-                                    <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">TDS Amount</p>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,12 +83,6 @@
                                 <td class="py-3 whitespace-nowrap">
                                     <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ transaction.invoice.settledAmount }}</p>
                                 </td>
-                                <td class="py-3 whitespace-nowrap">
-                                    <span
-                                        class="rounded-full px-2 py-0.5 text-theme-xs font-medium bg-success-50 text-success-600 dark:bg-success-500/15 dark:text-success-500">
-                                        {{ transaction.tds }}
-                                    </span>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -102,9 +93,9 @@
         <!-- Delete modal -->
         <Modal @secondary-click="showDeleteModal = false" @close="showDeleteModal = false" primary-button-text="Delete"
             secondary-button-text="Cancel" header="Delete Party ?" :is-visible="showDeleteModal"
-            :fullScreenBackdrop="true" @primary-click="deletePaymentInRecord">
+            :fullScreenBackdrop="true" @primary-click="deletePaymentOutRecord">
             <div class="p-2">
-                <p>Are you sure, you want to delete this payment record?</p>
+                <p>Are you sure, you want to delete this payment out record?</p>
                 <p class="text-gray-400">This action cannot be reversed.</p>
             </div>
         </Modal>
@@ -124,7 +115,7 @@ export default {
         Button
     },
 
-    name: 'PaymentInDetail',
+    name: 'PaymentOutDetail',
 
     data() {
         return {
@@ -137,7 +128,6 @@ export default {
                         amount : '5,000',
                         settledAmount: '3,400',
                     },
-                    tds: '100'
                 }
             ]
         }
@@ -145,15 +135,15 @@ export default {
 
     methods: {
         closeDrawer() {
-            this.$router.push(routeConstants.PAYMENT_IN);
+            this.$router.push(routeConstants.PAYMENT_OUT);
         },
 
         handleEditClick() {
             const id = this.$route.params.id as string;
-            this.$router.push(routeConstants.CREATE_PAYMENT_IN(id));
+            this.$router.push(routeConstants.CREATE_PAYMENT_OUT(id));
         },
 
-        deletePaymentInRecord() {
+        deletePaymentOutRecord() {
 
         }
     }

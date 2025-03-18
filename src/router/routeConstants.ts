@@ -20,6 +20,8 @@ export const routeConstants = {
     REPORTS: '/reports',
     CASH_AND_BANK: '/cash-and-bank',
     EXPENSES: '/expenses',
+    CREATE_EXPENSES: (id: string | null) => `/expenses/create`+ (id ? `/${id}` : '/:id'),
+    EXPENSES_DETAILS: (id: string | null) => `/expenses/details`+ (id ? `/${id}` : '/:id'),
     POS: '/pos-billing',
     SETTING: '/settings',
     SALES_INVOICE: '/sales-invoice',

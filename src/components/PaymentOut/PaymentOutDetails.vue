@@ -92,7 +92,7 @@
 
         <!-- Delete modal -->
         <Modal @secondary-click="showDeleteModal = false" @close="showDeleteModal = false" primary-button-text="Delete"
-            secondary-button-text="Cancel" header="Delete Party ?" :is-visible="showDeleteModal"
+            secondary-button-text="Cancel" header="Delete Payment ?" :is-visible="showDeleteModal"
             :fullScreenBackdrop="true" @primary-click="deletePaymentOutRecord">
             <div class="p-2">
                 <p>Are you sure, you want to delete this payment out record?</p>

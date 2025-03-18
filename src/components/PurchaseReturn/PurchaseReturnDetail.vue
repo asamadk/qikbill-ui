@@ -3,7 +3,7 @@
         <admin-layout>
             <div
                 class="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
-                <PageBreadcrumb :backPath="salesReturnEndpoint" :showBackButton="true" path="Sales Return" pageTitle="Sales Return #3" />
+                <PageBreadcrumb :backPath="purchaseReturnEndpoint" :showBackButton="true" path="Purchase Return" pageTitle="Purchase Return #3" />
                 <div class="flex justify-between" >
                     <div>
                         <Button variant="outline" >Download PDF</Button>
@@ -24,7 +24,7 @@
             secondary-button-text="Cancel" header="Delete Item ?" :is-visible="showDelete"
             :fullScreenBackdrop="true" @primary-click="deleteInvoice" >
             <div class="p-2" >
-                <p>Are you sure, you want to delete this sales return invoice?</p>
+                <p>Are you sure, you want to delete this purchase return invoice?</p>
                 <p class="text-gray-400" >This action cannot be reversed.</p>
             </div>
         </Modal>
@@ -52,11 +52,11 @@ export default {
         Modal,
     },
 
-    name: 'SaleReturnDetail',
+    name: 'PurchaseReturnDetail',
 
     data() {
         return {
-            salesReturnEndpoint: routeConstants.SALES_RETURN,
+            purchaseReturnEndpoint: routeConstants.PURCHASE_RETURN,
             showDelete: false,
         }
     },
@@ -69,7 +69,7 @@ export default {
 
         handleEditInvoice() {
             const invoiceId = this.$route.params.id as string;
-            this.$router.push(routeConstants.CREATE_SALES_RETURN(invoiceId));
+            this.$router.push(routeConstants.CREATE_PURCHASE_RETURN(invoiceId));
         }
     }
 }

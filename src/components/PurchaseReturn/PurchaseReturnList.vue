@@ -7,8 +7,8 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <router-link :to="createSalesReturn">
-                    <Button size="sm" variant="primary"> Create Sales Return</Button>
+                <router-link :to="createPurchaseReturn">
+                    <Button size="sm" variant="primary"> Create Purchase Return</Button>
                 </router-link>
             </div>
         </div>
@@ -21,7 +21,7 @@
                             <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Date</p>
                         </th>
                         <th class="py-3 text-left">
-                            <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Sales Return Number</p>
+                            <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Purchase Return Number</p>
                         </th>
                         <th class="py-3 text-left">
                             <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Party Name</p>
@@ -51,7 +51,7 @@
                             </div>
                         </td>
                         <td class="py-3 whitespace-nowrap">
-                            <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ invoice.sales_return_number }}</p>
+                            <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ invoice.purchase_return_number }}</p>
                         </td>
                         <td class="py-3 whitespace-nowrap">
                             <p class="text-gray-500 text-theme-sm dark:text-gray-400">{{ invoice.party.name }}</p>
@@ -89,7 +89,7 @@ export default {
         SelectInput,
     },
 
-    name: 'SalesReturnList',
+    name: 'PurchaseReturnList',
 
     computed: {
         totalInvoices() {
@@ -102,13 +102,13 @@ export default {
             itemsPerPage: 1,
             currentPage: 0,
             showSettings: false,
-            createSalesReturn: routeConstants.CREATE_SALES_RETURN('new'),
+            createPurchaseReturn: routeConstants.CREATE_PURCHASE_RETURN('new'),
             invoices: [
                 {
                     id: 'XBJL101',
                     date: '12 March 2025',
-                    sales_return_number: '8',
-                    party: { name: 'Cash Sale' },
+                    purchase_return_number: '8',
+                    party: { name: 'Cash PR' },
                     due: '27 Days',
                     amount: '₹ 375',
                     status: 'Paid'
@@ -123,7 +123,7 @@ export default {
             // Fetch new data based on the current page
         },
         handleInvoiceOpen(invoice: any) {
-            this.$router.push(routeConstants.SALES_RETURN_DETAILS(invoice?.id))
+            this.$router.push(routeConstants.PURCHASE_RETURN_DETAILS(invoice?.id))
         }
     }
 }

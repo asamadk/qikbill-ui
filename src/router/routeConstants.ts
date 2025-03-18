@@ -38,6 +38,8 @@ export const routeConstants = {
     CREATE_PURCHASE_INVOICE: (invoiceId: string | null) => `/purchase-invoice/create`+ (invoiceId ? `/${invoiceId}` : '/:id'),
     PURCHASE_INVOICE_DETAILS: (invoiceId: string | null) => `/purchase-invoice/details`+ (invoiceId ? `/${invoiceId}` : '/:id'),
     PURCHASE_RETURN: '/purchase-return',
+    CREATE_PURCHASE_RETURN: (id: string | null) => `/purchase-return/create`+ (id ? `/${id}` : '/:id'),
+    PURCHASE_RETURN_DETAILS: (id: string | null) => `/purchase-return/details`+ (id ? `/${id}` : '/:id'),
     PAYMENT_OUT: '/payment-out',
     CREATE_PAYMENT_OUT: (id: string | null) => `/payment-out/create`+ (id ? `/${id}` : '/:id'),
     PAYMENT_OUT__DETAILS: (id: string | null) => `/payment-out/details`+ (id ? `/${id}` : '/:id'),

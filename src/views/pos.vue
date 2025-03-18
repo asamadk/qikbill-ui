@@ -1,19 +1,19 @@
 <template>
     <div class="bg-white p-2 h-screen">
         <!-- Header -->
-        <div class="flex justify-between items-center border-b pb-2">
-            <Button @click="goBack" variant="outline">&larr; Exit POS [ESC]</Button>
+        <div class="flex justify-between items-center border-b pb-2 bg-gray-100">
+            <Button @click="goBack" variant="outline">&larr; Exit POS <span class="text-gray-400">[ESC]</span></Button>
             <h2 class="text-sm">POS Billing</h2>
-            <Button @click="showSettings = true" variant="outline">Settings [CTRL + S]</Button>
+            <Button @click="showSettings = true" variant="outline">Settings <span class="text-gray-400">[CTRL + S]</span></Button>
         </div>
 
         <!-- Tabs -->
         <div class="flex items-center gap-2 border-b">
             <div class="border-r-1 border-gray-200">
-                <p class="p-2 text-sm">Billing Screen 1 [CTRL + 1]</p>
+                <p class=" bg-brand-50 p-2 text-sm cursor-pointer">Billing Screen 1 <span class="text-gray-400">[CTRL + 1]</span></p>
             </div>
             <div class="border-r-1 border-gray-200">
-                <p class="text-brand-500 p-2 text-sm cursor-pointer">+ Hold Bill & Create Another [CTRL + B]</p>
+                <p class="text-brand-500 p-2 text-sm cursor-pointer">+ Hold Bill & Create Another <span class="text-gray-400">[CTRL + B]</span></p>
             </div>
         </div>
 
@@ -23,10 +23,10 @@
 
                 <!-- CRUD Buttons -->
                 <div class="flex p-2">
-                    <Button variant="outline">+ New Item [CTRL + I]</Button>
-                    <Button class="ml-2" variant="outline">Change Price [P]</Button>
-                    <Button class="ml-2" variant="outline">Change QTY [Q]</Button>
-                    <Button class="ml-2" variant="outline"><span class="text-red-400">Delete Item</span> [DEL]</Button>
+                    <Button variant="outline">+ New Item <span class="text-gray-400">[CTRL + I]</span></Button>
+                    <Button class="ml-2" variant="outline">Change Price <span class="text-gray-400">[P]</span></Button>
+                    <Button class="ml-2" variant="outline">Change QTY <span class="text-gray-400">[Q]</span></Button>
+                    <Button class="ml-2" variant="outline"><span class="text-red-400">Delete Item</span> <span class="text-gray-400">[DEL]</span></Button>
                 </div>
 
                 <!-- search input -->
@@ -73,7 +73,7 @@
                         <!-- Footer Section -->
                         <div class="flex justify-between items-center p-3 border-t bg-gray-100 text-sm">
                             <span>Total Items: {{ items.length }}</span>
-                            <Button @click="clearItems" variant="outline"><span class="text-red-400">Clear All Items</span> [CTRL + C]</Button>
+                            <Button @click="clearItems" variant="outline"><span class="text-red-400">Clear All Items</span> <span class="text-gray-400">[CTRL + C]</span></Button>
                         </div>
                     </div>
                 </div>
@@ -83,19 +83,19 @@
             <div class="flex flex-col h-full">
                 <!-- Discount and additional -->
                 <div class="flex pt-2">
-                    <Button class="w-1/2" variant="outline">Add Discount [F2]</Button>
-                    <Button class="w-1/2 ml-2" variant="outline">Add Additional Charge [F3]</Button>
+                    <Button class="w-1/2" variant="outline">Add Discount <span class="text-gray-400">[F2]</span></Button>
+                    <Button class="w-1/2 ml-2" variant="outline">Add Additional Charge <span class="text-gray-400">[F3]</span></Button>
                 </div>
 
                 <!-- Billing details -->
                 <div class="border rounded-lg mt-4">
                     <div class="bg-gray-100 text-base p-2">Bill Details</div>
                     <div class="flex justify-between text-base p-2">
-                        <p>Sub Total</p>
+                        <p class="text-gray-500" >Sub Total</p>
                         <p>₹ 100</p>
                     </div>
                     <div class="flex justify-between text-base p-2">
-                        <p>Tax</p>
+                        <p class="text-gray-500" >Tax</p>
                         <p>₹ 10</p>
                     </div>
                     <div class="flex justify-between text-lg p-2 font-semibold bg-green-50">
@@ -124,7 +124,7 @@
 
                 <!-- Footer buttons (Stick to bottom) -->
                 <div class="mt-auto flex mb-2">
-                    <Button class="w-1/2" variant="outline">Save & Print [F6]</Button>
+                    <Button class="w-1/2" variant="outline">Save & Print <span class="text-gray-400">[F6]</span></Button>
                     <Button class="w-1/2 ml-2">Save Bill [F7]</Button>
                 </div>
             </div>

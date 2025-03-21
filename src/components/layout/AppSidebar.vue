@@ -216,11 +216,11 @@ const menuGroups = [
   {
     title: "Accounting and Solutions",
     items: [
-      {
-        icon: CashIcon,
-        name: "Cash And Bank",
-        path: routeConstants.CASH_AND_BANK,
-      },
+      // {
+      //   icon: CashIcon,
+      //   name: "Cash And Bank",
+      //   path: routeConstants.CASH_AND_BANK,
+      // },
       {
         icon: WalletIcon,
         name: "Expenses",

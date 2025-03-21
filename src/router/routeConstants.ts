@@ -45,4 +45,25 @@ export const routeConstants = {
     PAYMENT_OUT: '/payment-out',
     CREATE_PAYMENT_OUT: (id: string | null) => `/payment-out/create`+ (id ? `/${id}` : '/:id'),
     PAYMENT_OUT__DETAILS: (id: string | null) => `/payment-out/details`+ (id ? `/${id}` : '/:id'),
+    REPORTS_LIST: {
+        balanceSheet: '/reports/balance-sheet',
+        salesSummary: '/reports/sales-summary',
+        cashBankReport: '/reports/cash-bank',
+        profitLoss: '/reports/profit-loss',
+        gstr1sale: '/reports/gstr1-sale',
+        gstr2purchase: '/reports/gstr2-purchase',
+        gstr3b: '/reports/gstr3b',
+        gstSaleHSN: '/reports/gst-sales-hsn',
+        gstPurchaseHSN: '/reports/gst-purchase-hsn',
+        hsnSaleSummary: '/reports/hsn-sales',
+        tdsPayble: '/reports/tds-payble',
+        tdsReceivable: '/reports/tds-receivable',
+        tcsPayble: '/reports/tcs-payble',
+        tcsReceivable: '/reports/tcs-receivable',
+        purchaseSummary: '/reports/purchase-summary',
+        auditTrails: '/reports/audit-trails',
+        billWiseProfit: '/reports/bill-wise-profit',
+        expenseTransaction: '/reports/expense-transaction',
+        partyStatement: '/reports/party-statement'
+    }
 }

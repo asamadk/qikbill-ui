@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
     <div class="flex" >
-      <IconButton v-if="showBackButton" class="mr-2" @click="goTo">
+      <div v-if="showBackButton" class="cursor-pointer hover:bg-brand-50 rounded-xl p-2 mt-1" @click="goTo">
         <BackIcon/>
-      </IconButton>
+      </div>
       <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90 mt-2" x-text="pageTitle">
         {{ pageTitle }}
       </h2>
@@ -68,7 +68,7 @@ export default {
 
   methods: {
     goTo() {
-      this.$router.push(this.backPath);
+      this.$router.push(this.backPath || '/');
     }
   }
 

@@ -48,7 +48,7 @@
         <LogoutIcon
           class="text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300"
         />
-        Sign out
+        Logout
       </div>
     </div>
     <!-- Dropdown End -->
@@ -74,9 +74,9 @@ const loadingStore = useLoadingStore();
 const toastStore = useToastStore();
 
 const menuItems = [
-  { href: '/profile', icon: UserCircleIcon, text: 'Edit profile' },
-  { href: '/chat', icon: SettingsIcon, text: 'Account settings' },
-  { href: '/profile', icon: InfoCircleIcon, text: 'Support' },
+  { href: routeConstants.SETTINGS.account, icon: SettingsIcon, text: 'Account settings' },
+  { href: routeConstants.SETTINGS.company, icon: UserCircleIcon, text: 'Business Settings' },
+  { href: routeConstants.SETTINGS.support, icon: InfoCircleIcon, text: 'Support' },
 ]
 
 const toggleDropdown = () => {

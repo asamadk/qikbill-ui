@@ -23,7 +23,6 @@ export const routeConstants = {
     CREATE_EXPENSES: (id: string | null) => `/expenses/create`+ (id ? `/${id}` : '/:id'),
     EXPENSES_DETAILS: (id: string | null) => `/expenses/details`+ (id ? `/${id}` : '/:id'),
     POS: '/pos-billing',
-    SETTING: '/settings',
     SALES_INVOICE: '/sales-invoice',
     CREATE_SALES_INVOICE: (invoiceId: string | null) => `/sales-invoice/create`+ (invoiceId ? `/${invoiceId}` : '/:id'),
     SALES_INVOICE_DETAILS: (invoiceId: string | null) => `/sales-invoice/details`+ (invoiceId ? `/${invoiceId}` : '/:id'),
@@ -65,5 +64,13 @@ export const routeConstants = {
         billWiseProfit: '/reports/bill-wise-profit',
         expenseTransaction: '/reports/expense-transaction',
         partyStatement: '/reports/party-statement'
+    },
+    SETTINGS: {
+        account: '/settings/account',
+        company: '/settings/company',
+        invoice: '/settings/invoice',
+        manageUsers: '/settings/users',
+        pricing: '/settings/pricing',
+        support: '/settings/support'
     }
 }

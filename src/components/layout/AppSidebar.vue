@@ -239,7 +239,7 @@ const menuGroups = [
       {
         icon: SettingsIcon,
         name: "Settings",
-        path: routeConstants.SETTING,
+        path: routeConstants.SETTINGS.account,
       },
     ]
   }

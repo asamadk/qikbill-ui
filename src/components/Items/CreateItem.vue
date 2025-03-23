@@ -100,7 +100,7 @@ export default {
 
         changeItemType(item: string) {
             console.log("🚀 ~ changeItemType ~ item:", item)
-            this.type = item;
+            this.type = item as any;
         }
     }
 }

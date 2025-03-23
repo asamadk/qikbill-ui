@@ -70,7 +70,7 @@ export default {
 
         handleEditInvoice() {
             const invoiceId = this.$route.params.id;
-            this.$router.push(routeConstants.CREATE_QUOTATION_INVOICE(invoiceId));
+            this.$router.push(routeConstants.CREATE_QUOTATION_INVOICE(invoiceId as any));
         }
     }
 }

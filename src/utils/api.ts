@@ -23,20 +23,9 @@ api.interceptors.response.use(
 
     if (error.response) {
       // Handle Unauthorized Errors (401)
-      if (error.response.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-
-        try {
-          // Attempt to refresh the session (server should renew the cookie)
-          await api.get("/auth/refresh");
-          
-          // Retry the original request
-          return api(originalRequest);
-        } catch (refreshError) {
-          // Refresh token failed → Logout user and redirect to login
-          userStore.logout();
-          router.push(routeConstants.LOGIN);
-        }
+      if (error.response.status === 401) {
+        userStore.logout();
+        window.location.href = routeConstants.LOGIN;
       }
     }
 

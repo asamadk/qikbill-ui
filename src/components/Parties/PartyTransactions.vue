@@ -70,8 +70,10 @@
     </div>
 </template>
 <script lang="ts">
+import { useLoadingStore } from '@/stores/loadingStore';
 import SelectInput from '../forms/FormElements/SelectInput.vue';
 import Pagination from '../ui/Pagination.vue';
+import PartyAPI from '@/api/PartyAPI';
 
 export default {
     components: {
@@ -90,10 +92,31 @@ export default {
             itemsPerPage: 5,
         }
     },
+
     methods: {
         handlePageChange(page: number) {
             console.log(page);
+        },
+
+        async getTransactions(partyId :string){
+            try {
+                useLoadingStore().startLoading();
+                const res = await PartyAPI.getTransactions(partyId)
+                this.transactions = res?.data?.data
+            } catch (err) {
+                useLoadingStore().stopLoading();
+            } finally {
+                useLoadingStore().stopLoading();
+            }
         }
-    }
+    },
+
+    watch: {
+        '$route'(route) {
+            if(route.params.id != undefined){
+                this.getTransactions(route.params.id as string);
+            }
+        }
+    },
 }
 </script>

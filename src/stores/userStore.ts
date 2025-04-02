@@ -7,9 +7,11 @@ export const useUserStore = defineStore("user", () => {
   const userInfo = ref<User | null>(null);
 
   
-//   const isAuthenticated = computed<boolean>(() => !!userInfo.value);
-  const isAuthenticated = computed<boolean>(() => true);
-  const getUserRole = computed<string>(() => userInfo.value?.role);
+  const isAuthenticated = computed(() => {
+    // return userInfo.value?.id != null && userInfo.value?.id.length > 0
+    return true;
+  });
+  const getUserRole = computed(() => userInfo.value?.role);
 
   const setUser = (userData: User) => {
     userInfo.value = userData;

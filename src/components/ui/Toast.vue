@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed top-5 right-5 z-50 flex flex-col gap-3">
+    <div class="fixed top-5 right-5 z-500000 flex flex-col gap-3">
         <transition-group name="fade">
             <div v-for="toast in toastStore.toasts" :key="toast.id"
                 :class="['rounded-xl border p-4 w-80 shadow-lg', variantClasses[toast.type].container]">

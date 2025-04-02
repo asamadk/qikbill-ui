@@ -11,12 +11,15 @@ export class CollectionAPI<T> {
     this.endpoint = `${this.baseURL}${endpoint}`;
   }
 
-  // Fetch all items with optional pagination
-  async getAll(page: number = 1, limit: number = 10): Promise<T[]> {
-    const response: AxiosResponse<T[]> = await this.api.get(
-      `${this.endpoint}?page=${page}&limit=${limit}`
+  // Fetch all items with optional pagination and additional query parameters
+  async getAll(page: number = 1, limit: number = 50, queryParams: { [key: string]: string | number } = {}): Promise<T> {
+    const query = Object.entries(queryParams)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("&");
+    const response: AxiosResponse = await this.api.get(
+      `${this.endpoint}?page=${page}&limit=${limit}${query ? `&${query}` : ""}`
     );
-    return response.data;
+    return response.data?.data;
   }
 
   // Fetch a single item by ID

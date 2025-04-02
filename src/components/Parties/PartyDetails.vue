@@ -5,7 +5,7 @@
             drawerId="party-details-drawer" drawerLabelId="party-details-label">
             <Tabs class="mb-2" @tab-changed="handleTabChange" :selected-tab="selectedTab" :tabs="tabs" />
             <PartyTransactions v-if="selectedTab === '1'" />
-            <PartyProfile v-else-if="selectedTab === '2'" />
+            <PartyProfile :party-details="partyDetails" v-else-if="selectedTab === '2'" />
             <PartyLedger v-else-if="selectedTab === '3'" />
             <PartyItemReport v-else />
         </AppDrawer>
@@ -28,6 +28,8 @@ import PartyLedger from './PartyLedger.vue';
 import PartyProfile from './PartyProfile.vue';
 import PartyTransactions from './PartyTransactions.vue';
 import Modal from '../ui/Modal.vue';
+import { useLoadingStore } from '@/stores/loadingStore';
+import PartyAPI from '@/api/PartyAPI';
 
 export default {
     components: {
@@ -46,17 +48,33 @@ export default {
         return {
             tabs: [
                 { name: 'Transactions', id: '1' },
-                { name: 'Profile', id: '2' },
-                // {name: 'Ledger (Statement)',id: '3'},
-                // {name: 'Item wise report',id: '4'},
+                { name: 'Profile', id: '2' },                
             ],
+            partyDetails: {},
             selectedTab: '1',
-            partyId: this.$route.params.id,
+            partyId: this.$route.params.id as string,
             showDeleteModal: false
         }
     },
 
+    created() {
+        this.getPartyDetails();
+    },
+
     methods: {
+
+        async getPartyDetails() {
+            try {
+                useLoadingStore().startLoading();
+                const res = await PartyAPI.getById(this.$route.params.id as string)
+                this.partyDetails = res?.party
+            } catch (err) {
+                useLoadingStore().stopLoading();
+            } finally {
+                useLoadingStore().stopLoading();
+            }
+        },
+
         closeDrawer() {
             this.$router.push(routeConstants.PARTIES);
         },

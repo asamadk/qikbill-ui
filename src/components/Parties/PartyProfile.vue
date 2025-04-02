@@ -9,27 +9,27 @@
             <div class="grid grid-cols-2 gap-4 mt-2 p-2">
                 <div>
                     <p class="text-sm text-gray-500">Party Name</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.name }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">party Type</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.type }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">Mobile Number</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.mobile }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">Category</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.category?.name}}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">Email</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.email }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">Opening balance</p>
-                    <p class="text-sm">Adam</p>
+                    <p class="text-sm">{{ partyDetails?.opening_balance }}</p>
                 </div>
             </div>
         </div>
@@ -42,20 +42,16 @@
             <div class="grid grid-cols-2 gap-4 mt-2 p-2">
                 <div>
                     <p class="text-sm text-gray-500">GSTN</p>
-                    <p class="text-sm">-</p>
+                    <p class="text-sm">{{ partyDetails?.gst }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-500">PAN Number</p>
-                    <p class="text-sm">-</p>
+                    <p class="text-sm">{{ partyDetails?.pan }}</p>
                 </div>
             </div>
             <div class="p-2">
                 <p class="text-sm text-gray-500">Billing Address</p>
-                <p class="text-sm">-</p>
-            </div>
-            <div class="p-2">
-                <p class="text-sm text-gray-500">Shipping Address</p>
-                <p class="text-sm">-</p>
+                <p class="text-sm">{{ partyDetails?.address }}</p>
             </div>
         </div>
     </div>
@@ -68,12 +64,27 @@
         <div class="grid grid-cols-2 gap-4 mt-2 p-2">
             <div>
                 <p class="text-sm text-gray-500">Credit Details</p>
-                <p class="text-sm">30 Days</p>
+                <p class="text-sm">{{ partyDetails?.credit_period }} Days</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Credit limit</p>
-                <p class="text-sm">-</p>
+                <p class="text-sm">{{ partyDetails?.credit_limit }}</p>
             </div>
         </div>
     </div>
 </template>
+
+<script lang="ts" >
+export default {
+
+    name: 'PartyProfile',
+
+    props: {
+        partyDetails : {
+            type: Object,
+            required: true
+        }
+    },
+
+}
+</script>

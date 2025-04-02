@@ -1,6 +1,6 @@
 <template>
     <div>
-        <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400 truncate">
+        <label v-if="label" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400 truncate">
             {{ label }}
         </label>
         <input :type="type" :placeholder="placeholder" v-model="inputValue"
@@ -20,7 +20,7 @@ export default {
             type: String,
             default: ''
         },
-        value: {
+        modelValue: {
             type: String,
             default: ''
         },
@@ -31,12 +31,15 @@ export default {
     },
     data() {
         return {
-            inputValue: this.value
+            inputValue: this.modelValue
         }
     },
     watch: {
         inputValue(newValue) {
-            this.$emit('input', newValue);
+            this.$emit('update:modelValue', newValue);
+        },
+        modelValue(newValue) {
+            this.inputValue = newValue;
         }
     }
 }
